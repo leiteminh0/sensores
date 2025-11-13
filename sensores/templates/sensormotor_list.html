@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de SensorMotor{% endblock %}
+
+{% block content %}
+
+<div class="sensormotor-header">
+    <h1>Lista de SensorMotor</h1>
+    <a href="{% url 'sensormotor_create' %}" class="btn-new">Novo Sensormotor</a>
+</div>
+
+<div class="sensormotor-grid">
+    {% for sensormotor in object_list %}
+    <div class="sensormotor-card">
+        <h3>{{ sensormotor.Modelo }}</h3>
+        <p><strong>MotorId:</strong> {{ sensormotor.MotorId }}</p>
+        <p><strong>SensorId</strong> {{ sensormotor.SensorId }}</p>
+        <div class="actions">
+            <a href="{% url 'sensormotor_update' sensormotor.pk %}" class="btn-edit">Editar</a>
+            <a href="{% url 'sensormotor_delete' sensormotor.pk %}" class="btn-delete">Excluir</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>Nenhum sensormotor cadastrado.</p>
+    {% endfor %}
+</div>
+
+{% endblock content %}

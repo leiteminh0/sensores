@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastro de Sensor{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+    <h1>Cadastro de Sensor</h1>
+    <form method="POST" class="sensor-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-actions">
+            <button type="submit" class="btn-submit">Salvar</button>
+            <a href="{% url 'sensor_list' %}" class="btn-cancel">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

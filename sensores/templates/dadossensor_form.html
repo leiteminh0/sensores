@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastro de DadosSensor{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+    <h1>Cadastro de DadosSensor</h1>
+    <form method="POST" class="dadossensor-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-actions">
+            <button type="submit" class="btn-submit">Salvar</button>
+            <a href="{% url 'dadossensor_list' %}" class="btn-cancel">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

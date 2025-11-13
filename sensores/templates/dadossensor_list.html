@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de DadosSensor{% endblock %}
+
+{% block content %}
+
+<div class="dadossensor-header">
+    <h1>Lista de DadosSensores</h1>
+    <a href="{% url 'dadossensor_create' %}" class="btn-new">Novo DadosSensor</a>
+</div>
+
+<div class="dadossensor-grid">
+    {% for dadossensor in object_list %}
+    <div class="dadossensor-card">
+        <h3>Dados do Sensor</h3>
+        <p><strong>DataHora:</strong> {{ dadossensor.DataHora }}</p>
+        <p><strong>MotorId:</strong> {{ dadossensor.MotorId }}</p>
+        <p><strong>SensorId:</strong> {{ dadossensor.SensorId }}</p> 
+        <p><strong>Valor:</strong> {{ dadossensor.Valor }}</p>
+        <div class="actions">
+            <a href="{% url 'dadossensor_update' dadossensor.pk %}" class="btn-edit">Editar</a>
+            <a href="{% url 'dadossensor_delete' dadossensor.pk %}" class="btn-delete">Excluir</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>Nenhum dadossensor cadastrado.</p>
+    {% endfor %}
+</div>
+
+{% endblock content %}

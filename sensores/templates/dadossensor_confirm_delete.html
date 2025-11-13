@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Confirmar Exclusão{% endblock %}
+
+{% block content %}
+
+<div class="confirm-delete">
+    <h1>Confirmar Exclusão</h1>
+    <div class="warning">
+        <p>Tem certeza que deseja excluir o dadossensor <strong>{{ object.Modelo }}</strong>?</p>
+        <p class="alert">Esta ação não pode ser desfeita.</p>
+    </div>
+    
+    <form method="POST" class="delete-form">
+        {% csrf_token %}
+        <div class="form-actions">
+            <button type="submit" class="btn-delete">Confirmar Exclusão</button>
+            <a href="{% url 'dadossensor_list' %}" class="btn-cancel">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Motor{% endblock %}
+
+{% block content %}
+
+<div class="motor-header">
+    <h1>Lista de Motores</h1>
+    <a href="{% url 'motor_create' %}" class="btn-new">Novo Motor</a>
+</div>
+
+<div class="motor-grid">
+    {% for motor in object_list %}
+    <div class="motor-card">
+        <h3>{{ motor.Modelo }}</h3>
+        <p><strong>Marca:</strong> {{ motor.Marca }}</p>
+        <p><strong>Descrição:</strong> {{ motor.Descricao }}</p>
+        <p><strong>Potência:</strong> {{ motor.Potencia }}</p>
+        <div class="actions">
+            <a href="{% url 'motor_update' motor.pk %}" class="btn-edit">Editar</a>
+            <a href="{% url 'motor_delete' motor.pk %}" class="btn-delete">Excluir</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>Nenhum motor cadastrado.</p>
+    {% endfor %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Sensor{% endblock %}
+
+{% block content %}
+
+<div class="sensor-header">
+    <h1>Lista de Sensor</h1>
+    <a href="{% url 'sensor_create' %}" class="btn-new">Novo Sensor</a>
+</div>
+
+<div class="sensor-grid">
+    {% for sensor in object_list %}
+    <div class="sensor-card">
+        <h3>{{ sensor.Modelo }}</h3>
+        <p><strong>Nome:</strong> {{ sensor.Nome }}</p>
+        <p><strong>Tipo:</strong> {{ sensor.Tipo }}</p>
+        <div class="actions">
+            <a href="{% url 'sensor_update' sensor.pk %}" class="btn-edit">Editar</a>
+            <a href="{% url 'sensor_delete' sensor.pk %}" class="btn-delete">Excluir</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>Nenhum sensor cadastrado.</p>
+    {% endfor %}
+</div>
+
+{% endblock content %}

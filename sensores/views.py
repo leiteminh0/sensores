@@ -90,3 +90,17 @@ class DadosSensorDeleteView(DeleteView):
     model = DadosSensor
     template_name = 'dadossensor_confirm_delete.html'
     success_url = reverse_lazy('dadossensor_list')
+
+def dashboard(request):
+    total_motores = Motor.objects.count()
+    total_sensores = Sensor.objects.count()
+    total_sensor_motor = SensorMotor.objects.count()
+    ultimos_dados = DadosSensor.objects.order_by('-DataHora')[:10]
+
+    context = {
+        'total_motores': total_motores,
+        'total_sensores': total_sensores,
+        'total_sensor_motor': total_sensor_motor,
+        'ultimos_dados': ultimos_dados,
+    }
+    return render(request, 'dashboard.html', context) 
